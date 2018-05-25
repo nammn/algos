@@ -20,7 +20,23 @@ def merge(n1, n2):
     return a
 
 
+def merg_sort(a1):
+    l1 = len(a1)
+    if l1 > 1:
+        slices1 = int(l1 / 2)
+        middle1 = a1[0:slices1]
+        middle2 = a1[slices1:l1]
+        left = merg_sort(middle1)
+        print('left: ', left)
+        right = merg_sort(middle2)
+        print('right: ', right)
+        print('merged: ', merge(left, right))
+        return merge(left, right)
+
+
 numb = [1, 2, 5, 7]
 numb2 = [3, 6, 8]
+toSort = [1, 38, 27, 110, 9, 82, 10, 100, 299, 13]
 
-print(merge(numb, numb2))
+# print(merge(numb, numb2))
+merg_sort(toSort)

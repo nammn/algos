@@ -41,7 +41,13 @@ class Node:
 
     # print every value, while traversing
     def traverse_inorder(self):
-        print('ok')
+        if self.left is not None:
+            self.left.traverse_inorder()
+        print(self.value)
+        if self.right is not None:
+            self.right.traverse_inorder()
+        else:
+            return
 
     def traverse_preorder(self):
         print('ok')
@@ -65,4 +71,5 @@ print('inserted: ', inserts)
 n1 = Node(70)
 root.add_node(n1)
 
-print(root.search(70))
+# print(root.search(70))
+root.traverse_inorder()

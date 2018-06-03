@@ -9,6 +9,7 @@ class Node:
     def __init__(self, value):
         self.value = value
 
+    # add a node in a binary way
     def add_node(self, node):
         if node.value > self.value:
             # push right
@@ -23,6 +24,7 @@ class Node:
             else:
                 self.left.add_node(node)
 
+    # searching the tree for a existing value
     def search(self, value):
         if self.value == value:
             return True
@@ -36,6 +38,20 @@ class Node:
                     return False
                 found = self.left.search(value)
         return found
+
+    # print every value, while traversing
+    def traverse_inorder(self):
+        print('ok')
+
+    def traverse_preorder(self):
+        print('ok')
+
+    def traverse_postOrder(self):
+        print('ok')
+
+    # rebalance the tree, such that a search and insertion time of log*n to be the avg. case
+    def balanceTree(self):
+        print(1)
 
 
 root = Node(7)

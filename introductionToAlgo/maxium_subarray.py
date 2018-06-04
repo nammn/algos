@@ -1,7 +1,7 @@
 # array with a stock price changes
 # with n^2 solution
 def max_sub_array(a):
-    abs_sum = 0
+    abs_sum = -11111111111
     low = 0
     end = 0
     for i in range(len(a) - 1):

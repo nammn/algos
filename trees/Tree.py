@@ -89,11 +89,34 @@ class Node:
             mysum = node.value + left + right
             return mysum
 
+    # fix, or is not right, neither is and!
     def max(self):
-        print(1)
+        current = self
+        while current.right is not None:
+            current = current.right
+        return current
+
+    def max_rec(self, node):
+        if not node:
+            return -99999999
+        left_max = self.max_rec(node.left)
+        right_max = self.max_rec(node.right)
+
+        return max(left_max, right_max, node.value)
 
     def min(self):
-        print(2)
+        current = self
+        while current.left is not None:
+            current = current.left
+        return current
+
+    def min_rec(self, node):
+        if not node:
+            return 99999999
+        left_min = self.min_rec(node.left)
+        right_min = self.min_rec(node.right)
+
+        return min(left_min, right_min, node.value)
 
     def left(self):
         print(2)
@@ -101,12 +124,16 @@ class Node:
     def right(self):
         print(2)
 
-    def size(self):
+    def height(self):
+        print(2)
+
+    def width(self):
+
         print(2)
 
 
 root = Node(42)
-inserts = [29, 27, 57, 71, 30, 97, 41, 78, 3, 60, 28, 100, 50]
+inserts = [29, 27, 57, 71, 30, 97, 41, 78, 102, 3, 60, 28, 100, 50]
 sum = root.value
 for i in inserts:
     n1 = Node(i)
@@ -127,3 +154,15 @@ print('\n bfs')
 root.traverse_bfs()
 print('\n sum')
 print(root.sum(root))
+
+print('\n max')
+print(root.max().value)
+
+print('\n max-rec')
+print(root.max_rec(root))
+
+print('\n min')
+print(root.min().value)
+
+print('\n min-rec')
+print(root.min_rec(root))

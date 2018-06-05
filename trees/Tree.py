@@ -1,13 +1,13 @@
 from random import randint
+from queues.Queue import Queue
 
 
 class Node:
-    left = None
-    right = None
-    value = None
 
     def __init__(self, value):
         self.value = value
+        self.left = None
+        self.right = None
 
     # add a node in a binary way
     def add_node(self, node):
@@ -66,12 +66,34 @@ class Node:
 
     # breadth first || level order
     def traverse_bfs(self):
-
-        print('ok')
+        queue = Queue()
+        queue.en_queue(self)
+        while not queue.is_empty():
+            node = queue.de_queue()
+            print(node.value)
+            if node.left is not None:
+                queue.en_queue(node.left)
+            if node.right is not None:
+                queue.en_queue(node.right)
 
     # rebalance the tree, such that a search and insertion time of log*n to be the avg. case
     def balanceTree(self):
         print(1)
+
+    def max(self):
+        print(1)
+
+    def min(self):
+        print(2)
+
+    def left(self):
+        print(2)
+
+    def right(self):
+        print(2)
+
+    def size(self):
+        print(2)
 
 
 root = Node(42)
@@ -81,10 +103,12 @@ for i in inserts:
     root.add_node(n1)
 print('inserted: ', inserts)
 
-# print(root.search(70))
+print(root.search(70))
 print('\n preOrder')
 root.traverse_pre_order()
 print('\n inOrder')
 root.traverse_in_order()
 print('\n postOrder')
 root.traverse_post_order()
+print('\n bfs')
+root.traverse_bfs()

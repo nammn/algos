@@ -118,14 +118,28 @@ class Node:
 
         return min(left_min, right_min, node.value)
 
-    def left(self):
-        print(2)
+    def left_sum(self, node):
+        if not node:
+            return 0
+        left = node.left_sum(node.left)
+        return left + node.value
 
-    def right(self):
-        print(2)
+    def right_sum(self, node):
+        if not node:
+            return 0
+        right = node.right_sum(node.right)
+        return right + node.value
 
-    def height(self):
-        print(2)
+    def max_depth(self, node):
+        if not node:
+            return 0
+        ltree = node.max_depth(node.left)
+        rtree = node.max_depth(node.right)
+
+        if ltree > rtree:
+            return ltree + 1
+        else:
+            return rtree + 1
 
     def width(self):
 
@@ -166,3 +180,12 @@ print(root.min().value)
 
 print('\n min-rec')
 print(root.min_rec(root))
+
+print('\n left-sum')
+print(root.left_sum(root))
+
+print('\n right-sum')
+print(root.right_sum(root))
+
+print('\n max-depth')
+print(root.max_depth(root))

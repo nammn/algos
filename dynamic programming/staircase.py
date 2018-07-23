@@ -1,4 +1,5 @@
 steps = 0
+steps1 = 0
 stei = 0
 nway = 0
 
@@ -10,13 +11,26 @@ def stepPerms(n, seen):
     """
     global steps
     steps = steps + 1
-    if n < 0:
-        return 0
-    if n == 0:
-        return 1
     if n in seen:
         return seen[n]
     a = stepPerms(n - 1, seen) + stepPerms(n - 2, seen) + stepPerms(n - 3, seen)
+    seen[n] = a
+    return a
+
+
+seen = {0: 1, -1: 0, -2: 0, -3: 0}
+
+
+def stepPerms1(n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    global steps1
+    steps1 = steps1 + 1
+    if n in seen:
+        return seen[n]
+    a = stepPerms1(n - 1) + stepPerms1(n - 2) + stepPerms1(n - 3)
     seen[n] = a
     return a
 
@@ -50,17 +64,21 @@ def countWays(n):
     return res[n]
 
 
-verts = [None] * 500
-n = 20
-
-res = it(n)
-print(res)
-print("steps: " + str(stei) + "\n")
+n = 300
+verts = {0: 1, -1: 0, -2: 0, -3: 0}
+#
+# res = it(n)
+# print(res)
+# print("steps: rek " + str(stei) + "\n")
 
 res = stepPerms(n, verts)
 print(res)
-print("steps : " + str(steps) + "\n")
+print("steps mem1: " + str(steps) + "\n")
+
+res = stepPerms1(n)
+print(res)
+print("steps mem global: " + str(steps1) + "\n")
 
 res = countWays(n)
 print(res)
-print("steps: " + str(nway) + "\n")
+print("steps: tabulation: " + str(nway) + "\n")

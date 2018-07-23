@@ -142,7 +142,7 @@ class Node:
             return rtree + 1
 
     def width(self):
-
+        
         print(2)
 
 

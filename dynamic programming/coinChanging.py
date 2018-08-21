@@ -12,7 +12,7 @@ def getWays(n, c):
 
 
 # inclusive stack simulation
-def topDown(n, c, mem, coins):
+def topDown(n, c, coins, mem):
     if n == 0:
         print("right: ", coins)
         coins.pop()
@@ -21,18 +21,21 @@ def topDown(n, c, mem, coins):
         print("wrong: ", coins)
         coins.pop()
         return 0
-    value = 0
+    key = str(n) + "-" + str(len(c))
+    if key in mem:
+        coins.pop()
+        return mem[key]
+    ways = 0
     i = 0
     while i < len(c):
         coins.append(c[i])
-        value = value + topDown(n - c[i], c[i:], mem, coins)
+        ways = ways + topDown(n - c[i], c[i:], coins, mem)
         i += 1
-    mem[n] = value
-    coins.pop()
-    return mem[n]
+    if len(coins) != 0:
+        coins.pop()
+    mem[key] = ways
+    return ways
 
 
-mem = {}
-print("top down", topDown(10, [2, 5, 3, 6], mem, []))
-print(mem)
+print("top down", topDown(10, [2, 5, 3, 6], [], {}))
 print("recursive", getWays(10, [2, 5, 3, 6]))

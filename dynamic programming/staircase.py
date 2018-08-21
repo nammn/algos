@@ -52,11 +52,9 @@ def stepmnutil(n, m, mem, out):
         print("wrong: " + str(out) + "= " + str(n))
         return 0
     a = 0
-    i = 1
-    while i <= m and i <= n:
+    for i in range(1, m + 1):
         out.append(i)
         a = a + stepmnutil(n - i, m, mem, out)
-        i = i + 1
         out.pop()
     seen[n] = a
     return a
@@ -159,12 +157,12 @@ print("steps: tabulation: " + str(nway) + "\n")
 # print(res)
 # print("steps: unique: " + str(res) + "\n")
 
-n = 8
-m = 3
+n = 11
+m = 5
 res = stepPermsnm(n, m)
 print(res)
 print("steps: n and m: " + str(res))
 
 # Driver program
-s, m = 8, 3
+s, m = 11, 5
 print("Number of ways =", counts(s, m))
